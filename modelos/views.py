@@ -41,29 +41,25 @@ class IA_ModelDetailView(APIView):
         return Response(serializer.data)
 
     def get_model(self, model_file):
-        if model_file not in loaded_models:
-            MODEL_PATH = os.path.join("capa_nitrurada", "modelos", f"{model_file}.h5")
-            if not os.path.exists(MODEL_PATH):
-                return None
-            print("🔄 Cargando modelo Nitride en float16...")
+        MODEL_PATH = os.path.join("capa_nitrurada", "modelos", f"{model_file}.h5")
+        if not os.path.exists(MODEL_PATH):
+            return None
 
-            # Limitar memoria que TF puede usar
-            # tf.config.experimental.set_memory_growth(tf.config.list_physical_devices('CPU')[0], True)
+        # Solo aplicar memory growth si hay GPU
+        gpus = tf.config.list_physical_devices('GPU')
+        if gpus:
+            try:
+                for gpu in gpus:
+                    tf.config.experimental.set_memory_growth(gpu, True)
+            except RuntimeError as e:
+                print("⚠️ No se pudo setear memory growth:", e)
 
-            # Cargar modelo
-            model = load_model(
-                MODEL_PATH,
-                custom_objects={"shape_aware_loss": shape_aware_loss, "iou_metric": iou_metric}
-            )
-            # Convertir pesos a float16
-            model = tf.keras.models.clone_model(model)
-            for layer in model.layers:
-                if hasattr(layer, 'dtype'):
-                    layer.dtype = 'float16'
-            
-            loaded_models[model_file] = model
-            print("✅ Modelo cargado correctamente.\n")
-        return loaded_models[model_file]
+        model = load_model(
+            MODEL_PATH,
+            custom_objects={"shape_aware_loss": shape_aware_loss, "iou_metric": iou_metric}
+        )
+        return model
+
 
     def post(self, request, pk, format=None):
         try:
