@@ -48,7 +48,7 @@ class IA_ModelDetailView(APIView):
             print("🔄 Cargando modelo Nitride en float16...")
 
             # Limitar memoria que TF puede usar
-            tf.config.experimental.set_memory_growth(tf.config.list_physical_devices('CPU')[0], True)
+            # tf.config.experimental.set_memory_growth(tf.config.list_physical_devices('CPU')[0], True)
 
             # Cargar modelo
             model = load_model(
