@@ -14,6 +14,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from tensorflow.keras.models import load_model
 from capa_nitrurada.testing_model import shape_aware_loss, iou_metric
+import tensorflow as tf
 
 # global para cachear modelos
 loaded_models = {}
