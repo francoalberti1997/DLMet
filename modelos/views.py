@@ -15,6 +15,9 @@ import numpy as np
 from tensorflow.keras.models import load_model
 from capa_nitrurada.testing_model import shape_aware_loss, iou_metric
 
+# global para cachear modelos
+loaded_models = {}
+
 # Lista todos los blogs o crea uno nuevo
 class ModelListCreateView(generics.ListCreateAPIView):
     queryset = IA_Model.objects.all()
@@ -35,14 +38,6 @@ class IA_ModelDetailView(APIView):
             return Response({'error': 'Modelo no encontrado'}, status=status.HTTP_404_NOT_FOUND)
         serializer = IA_ModelSerializer(model)
         return Response(serializer.data)
-
-
-# global para cachear modelos
-loaded_models = {}
-import tensorflow as tf
-
-class IA_ModelDetailView(APIView):
-    parser_classes = [MultiPartParser, FormParser]
 
     def get_model(self, model_file):
         if model_file not in loaded_models:
