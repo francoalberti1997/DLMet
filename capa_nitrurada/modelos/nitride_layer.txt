@@ -1,0 +1,4 @@
+Este modelo tiene una arquitectura U-Net, con capas que implementar residual function y attentions. 
+Se parte de la img original y se realizan patches de 256x256 que barren toda la imagen. 
+Estos patches son el input del modelo.
+La salida es una máscara binaria sobre el patch.
