@@ -83,6 +83,7 @@ class IA_ModelDetailView(APIView):
                 f.write(chunk)
 
         try:
+            output_url = procesar_prediccion(input_path, model, request)
             if output_url.startswith('http://'):
                 output_url = output_url.replace('http://', 'https://', 1)
 
