@@ -55,14 +55,8 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
 ]
 
-
-CSRF_TRUSTED_ORIGINS = [
-    'https://18.222.79.144/',
-    'https://albertidl.vercel.app/'
-    ]
-
-CORS_ALLOW_ALL_ORIGINS = True  
-CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_CREDENTIALS = False
 
 ROOT_URLCONF = 'albertidl.urls'
 
@@ -142,4 +136,5 @@ import os
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # URL pública para acceder a los archivos subidos
-MEDIA_URL = '/media/'
+MEDIA_URL = 'https://18.222.79.144/media/'
+
