@@ -83,7 +83,9 @@ class IA_ModelDetailView(APIView):
                 f.write(chunk)
 
         try:
-            output_url = procesar_prediccion(input_path, model, request)
+            if output_url.startswith('http://'):
+                output_url = output_url.replace('http://', 'https://', 1)
+
             return Response({'output_image_url': output_url})
         except Exception as e:
             print("❌ Error al procesar predicción:", e)

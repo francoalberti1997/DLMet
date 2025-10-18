@@ -136,5 +136,4 @@ import os
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # URL pública para acceder a los archivos subidos
-MEDIA_URL = 'https://18.222.79.144/media/'
-
+MEDIA_URL = '/media/'
