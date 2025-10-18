@@ -55,9 +55,14 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
 ]
 
-CORS_ALLOW_ALL_ORIGINS = True
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://18.222.79.144/',
+    'https://albertidl.vercel.app/'
+    ]
 
+CORS_ALLOW_ALL_ORIGINS = True  
+CORS_ALLOW_CREDENTIALS = True
 
 ROOT_URLCONF = 'albertidl.urls'
 
