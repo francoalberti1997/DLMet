@@ -15,3 +15,12 @@ class IA_Model(models.Model):
     def __str__(self):
         return self.title
 
+class Prediccion(models.Model):
+    ia_model = models.ForeignKey(IA_Model, on_delete=models.CASCADE)
+    input_image = models.URLField()
+    output_image = models.URLField(blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    status = models.CharField(max_length=20, default='pending')
+
+    def __str__(self):
+        return f"Predicción para {self.ia_model.title} en {self.created_at}"    
