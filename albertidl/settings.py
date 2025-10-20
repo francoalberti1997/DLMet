@@ -137,3 +137,10 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # URL pública para acceder a los archivos subidos
 MEDIA_URL = '/media/'
+
+
+CSRF_COOKIE_SAMESITE = 'Lax'
+
+SESSION_COOKIE_SECURE = False
+
+CSRF_COOKIE_SECURE = False
