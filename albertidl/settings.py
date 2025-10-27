@@ -29,7 +29,8 @@ ALLOWED_HOSTS = ['*']
 
 CSRF_TRUSTED_ORIGINS = [
     'https://ec2-18-222-79-144.us-east-2.compute.amazonaws.com',
-    'https://albertidl.vercel.app',  # si tu frontend está ahí también
+    'https://albertidl.vercel.app',
+    'https://crucially-treacherous-madie.ngrok-free.dev'  
 ]
 
 
