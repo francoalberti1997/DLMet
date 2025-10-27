@@ -3,11 +3,13 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
+import views 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('blogs/', include('blogs.urls')),
     path('modelos/', include('modelos.urls')),
+    path("ping/", views.ping_view, name="ping"),
 ]
 
 if settings.DEBUG:
